@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prédiction du masque</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="title">PRÉDICTION DU MASQUE</h1>
+            <div class="form-container">
+                <label for="image-select" class="label">Choix de l'image</label>
+                <select id="image-select" class="dropdown">
+                    <option value="" disabled selected>-- Sélectionnez une image --</option> 
+                    {% for image in images %}
+                    <option value="{{ image.nom_image }}">{{ image.nom_affichage }}</option>
+                    {% endfor %}
+                </select>
+                <button id="validate-button" class="validate-button">Valider</button>
+            </div>
+            <div class="image-gallery">
+                <img id="image1" src="" alt="Image 1" class="gallery-image" style="display: none;">
+                <img id="image2" src="" alt="Image 2" class="gallery-image" style="display: none;">
+                <img id="image3" src="" alt="Image 3" class="gallery-image" style="display: none;">
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#validate-button").click(function() {
+                    const selectedImage = $("#image-select").val();
+                    if (!selectedImage) {
+                        alert("Veuillez sélectionner une image !");
+                        return;
+                    }
+                    // Envoyer une requête au serveur pour obtenir les nouvelles images
+                    $.ajax({
+                        url: "/get-images",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            selected_image: selectedImage
+                        }),
+                        success: function(response) {
+                            if (response.error) {
+                                alert(response.error);
+                                return;
+                            }
+                            // Mettre à jour les images
+                            $("#image1").attr("src", `data:image/png;base64,${response.image1}`).show();
+                            $("#image2").attr("src", `data:image/png;base64,${response.image2}`).show();
+                            if (response.image3) {
+                                $("#image3").attr("src", `data:image/png;base64,${response.image3}`).show();
+                            }
+                        },
+                        error: function() {
+                            alert("Erreur lors du chargement des images !");
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
