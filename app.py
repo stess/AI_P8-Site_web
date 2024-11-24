@@ -11,9 +11,12 @@ from PIL import Image
 app = Flask(__name__)
 
 # Configurer le logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Charger le JSON et le transmettre à la page HTML
+
+
 @app.route("/")
 def home():
     json_path = os.path.join(app.static_folder, "images.json")
@@ -27,6 +30,8 @@ def home():
         return jsonify({"error": "Failed to load JSON file"}), 500
 
 # Helper pour encoder une image en base64
+
+
 def encode_image_to_base64(image_path):
     try:
         with open(image_path, "rb") as img_file:
@@ -37,6 +42,8 @@ def encode_image_to_base64(image_path):
         return None
 
 # Route pour servir les images dynamiquement
+
+
 @app.route("/get-images", methods=["POST"])
 def get_images():
     data = request.json
@@ -48,15 +55,18 @@ def get_images():
         return jsonify({"error": "No image selected"}), 400
 
     # Construire les noms des fichiers
-    left_img_path = os.path.join(app.static_folder, "images", f"{selected_image}_leftImg8bit.png")
-    label_img_path = os.path.join(app.static_folder, "images", f"{selected_image}_gtFine_labelIds.png")
+    left_img_path = os.path.join(
+        app.static_folder, "images", f"{selected_image}_leftImg8bit.png")
+    label_img_path = os.path.join(
+        app.static_folder, "images", f"{selected_image}_gtFine_labelIds.png")
 
     # Encoder les images en base64
     left_img_base64 = encode_image_to_base64(left_img_path)
     label_img_base64 = encode_image_to_base64(label_img_path)
 
     if not left_img_base64 or not label_img_base64:
-        logging.error("L'une des images est introuvable ou n'a pas pu être encodée.")
+        logging.error(
+            "L'une des images est introuvable ou n'a pas pu être encodée.")
         return jsonify({"error": "Images not found"}), 404
 
     # Appeler l'API externe pour obtenir l'image prédite
@@ -70,7 +80,8 @@ def get_images():
             logging.info("Image prédite reçue avec succès.")
         else:
             predicted_image_base64 = ""
-            logging.warning(f"Erreur dans la réponse de l'API externe : {response.status_code}")
+            logging.warning(
+                f"Erreur dans la réponse de l'API externe : {response.status_code}")
     except requests.RequestException as e:
         logging.error(f"Échec de la requête à l'API externe : {e}")
         return jsonify({"error": f"Failed to fetch predicted image: {e}"}), 500
@@ -80,6 +91,7 @@ def get_images():
         "image2": label_img_base64,
         "image3": predicted_image_base64  # Image prédite encodée en base64
     })
+
 
 @app.route("/test-json")
 def test_json():
@@ -93,6 +105,7 @@ def test_json():
         logging.error(f"Erreur lors du chargement du fichier JSON : {e}")
         return jsonify({"error": "Failed to load JSON file"}), 500
 
+
 if __name__ == "__main__":
     logging.info("Lancement de l'application Flask...")
-    app.run(host='0.0.0.0', port=5050)
+    app.run()
