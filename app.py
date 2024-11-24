@@ -70,7 +70,7 @@ def get_images():
         return jsonify({"error": "Images not found"}), 404
 
     # Appeler l'API externe pour obtenir l'image prédite
-    predict_url = "http://localhost:5000/predict"
+    predict_url = "future-vision-transport-api-eydzckhahpauc8d9.francecentral-01.azurewebsites.net/predict"
     try:
         logging.info(f"Envoi de la requête à l'API externe : {predict_url}")
         response = requests.post(predict_url, json={"image": left_img_base64})
