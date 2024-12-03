@@ -24,8 +24,8 @@ jobs:
 
       - name: Create and start virtual environment
         run: |
-          python -m venv antenv
-          source antenv/bin/activate
+          python -m venv venv
+          source venv/bin/activate
       
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -41,7 +41,7 @@ jobs:
           name: python-app
           path: |
             release.zip
-            !antenv/
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -65,9 +65,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0B43C0CCDF7A47A2B4A5D972830C2B9C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F5BDC44C07664FF996F5B65E738E343E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5E2B02AE05334B00839DF8C7A8E6C52D }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4BEFB545207B4593BD1F9F8E104EA1B8 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3B829BC737D14B6D964ED826514A5A00 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_56FF2D1BE6144F518695139AD723FAC8 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
