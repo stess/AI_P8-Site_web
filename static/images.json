@@ -1,14 +1,103 @@
 [
     {
-        "nom_affichage": "Aachen 1",
-        "nom_image": "aachen_000037_000019"
+        "nom_affichage": "Image 1",
+        "nom_image": "aachen_000034_000019"
     },
     {
-        "nom_affichage": "Bochum 1",
-        "nom_image": "bochum_000000_000600"
+        "nom_affichage": "Image 2",
+        "nom_image": "aachen_000046_000019"
     },
     {
-        "nom_affichage": "Bremen 1",
-        "nom_image": "bremen_000131_000019"
+        "nom_affichage": "Image 3",
+        "nom_image": "aachen_000079_000019"
+    },
+    {
+        "nom_affichage": "Image 4",
+        "nom_image": "aachen_000099_000019"
+    },
+    {
+        "nom_affichage": "Image 5",
+        "nom_image": "bochum_000000_007150"
+    },
+    {
+        "nom_affichage": "Image 6",
+        "nom_image": "bochum_000000_007651"
+    },
+    {
+        "nom_affichage": "Image 7",
+        "nom_image": "bochum_000000_011255"
+    },
+    {
+        "nom_affichage": "Image 8",
+        "nom_image": "bochum_000000_014658"
+    },
+    {
+        "nom_affichage": "Image 9",
+        "nom_image": "bochum_000000_015038"
+    },
+    {
+        "nom_affichage": "Image 10",
+        "nom_image": "bremen_000029_000019"
+    },
+    {
+        "nom_affichage": "Image 11",
+        "nom_image": "bremen_000051_000019"
+    },
+    {
+        "nom_affichage": "Image 12",
+        "nom_image": "cologne_000003_000019"
+    },
+    {
+        "nom_affichage": "Image 13",
+        "nom_image": "cologne_000024_000019"
+    },
+    {
+        "nom_affichage": "Image 14",
+        "nom_image": "cologne_000027_000019"
+    },
+    {
+        "nom_affichage": "Image 15",
+        "nom_image": "cologne_000035_000019"
+    },
+    {
+        "nom_affichage": "Image 16",
+        "nom_image": "darmstadt_000000_000019"
+    },
+    {
+        "nom_affichage": "Image 17",
+        "nom_image": "darmstadt_000005_000019"
+    },
+    {
+        "nom_affichage": "Image 18",
+        "nom_image": "darmstadt_000010_000019"
+    },
+    {
+        "nom_affichage": "Image 19",
+        "nom_image": "darmstadt_000021_000019"
+    },
+    {
+        "nom_affichage": "Image 20",
+        "nom_image": "darmstadt_000024_000019"
+    },
+    {
+        "nom_affichage": "Image 21",
+        "nom_image": "dusseldorf_000002_000019"
+    },
+    {
+        "nom_affichage": "Image 22",
+        "nom_image": "dusseldorf_000004_000019"
+    },
+    {
+        "nom_affichage": "Image 23",
+        "nom_image": "dusseldorf_000009_000019"
+    },
+    {
+        "nom_affichage": "Image 24",
+        "nom_image": "dusseldorf_000126_000019"
+    },
+    
+    {
+        "nom_affichage": "Image 25",
+        "nom_image": "strasbourg_000001_005876"
     }
 ]
