@@ -20,6 +20,10 @@
                 </select>
                 <button id="validate-button" class="validate-button">Valider</button>
             </div>
+            <div id="loading" style="display: none;">
+                <p>Chargement...</p>
+                <div class="spinner"></div>
+            </div>
             <div class="image-gallery">
                 <img id="image1" src="" alt="Image 1" class="gallery-image" style="display: none;">
                 <img id="image2" src="" alt="Image 2" class="gallery-image" style="display: none;">
@@ -34,6 +38,13 @@
                         alert("Veuillez sélectionner une image !");
                         return;
                     }
+        
+                    // Afficher le loader et masquer les images
+                    $("#loading").show();
+                    $("#image1").hide();
+                    $("#image2").hide();
+                    $("#image3").hide();
+        
                     // Envoyer une requête au serveur pour obtenir les nouvelles images
                     $.ajax({
                         url: "/get-images",
@@ -43,10 +54,14 @@
                             selected_image: selectedImage
                         }),
                         success: function(response) {
+                            // Masquer le loader
+                            $("#loading").hide();
+        
                             if (response.error) {
                                 alert(response.error);
                                 return;
                             }
+        
                             // Mettre à jour les images
                             $("#image1").attr("src", `data:image/png;base64,${response.image1}`).show();
                             $("#image2").attr("src", `data:image/png;base64,${response.image2}`).show();
@@ -55,11 +70,13 @@
                             }
                         },
                         error: function() {
+                            // Masquer le loader
+                            $("#loading").hide();
                             alert("Erreur lors du chargement des images !");
                         }
                     });
                 });
             });
-        </script>
+        </script>              
     </body>
 </html>
