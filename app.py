@@ -101,7 +101,7 @@ def get_images():
         return jsonify({"error": "Failed to process image 2"}), 500
 
     # Appeler l'API externe pour obtenir l'image prédite (image 3)
-    predict_url = "https://future-vision-transport-api-eydzckhahpauc8d9.francecentral-01.azurewebsites.net/predict"
+    predict_url = "https://api-segmentation.mik.wf/predict"
     try:
         response = requests.post(predict_url, json={"image": left_img_base64})
         if response.status_code == 200:
